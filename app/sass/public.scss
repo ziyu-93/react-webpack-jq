@@ -1,0 +1,138 @@
+/* sass 老版本定义变量是用 "!" 现在用"$"是因为 "$"好看 而且css里面没有用到这个符号，不起冲突。*/
+
+/* sass 也可以用 css 选择器，>、+、~  >:dom对象的第一个子节点*/
+/* + : 同层相邻组合选择器。第一个，紧跟在后面的*/
+/* ~ : 同层组合选择器，dom 后的同层所有的 兄弟节点。在类选的时候用到过。*/
+/* @import 区别 :  1). css import 其他 css 文件的时候，只有在加载到import 的时候，才会加载，所以会让页面加载缓慢。2）. sass 则不会发起额外的下载请求。*/
+/* sass 支持元素引用某一个 sass/scss 样式文件，并且该元素的样式就是这个文件定义的样式结构。*/
+/* 如果想要 引入 某一个 css 样式文件 那么就直接将文件后缀改写 就好了。sass 语法完全兼容css。*/
+/* 在sass 中写的注释，编译成css 的时候，注释是可以抹掉的，就是行末 注释的方法。*/
+/* sass 定义混合器的方法是 @mixin + 方法名字 {}  使用的方法是@include + 方法名*/
+/* @extend 继承*/
+
+/*定义部分*/
+$bg:#c39559 !default;/* ! default 这个结构和css 的 !important 相似，不过这个意思是 如果引入了这个变量，并且给这个变量重新赋值，那么就用新赋的值，如果没有重新更改过，那么就用定义好的。*/
+$bg-hover:#a8814d;
+$float:left;/* sass 定义变量属性值 不写双引号""。*/
+$display:flex;
+
+@mixin wh($w,$h){
+  height: $h;
+  width: $w;
+}
+@mixin chaochu($rowNam){
+  overflow: hidden;
+  -o-text-overflow: ellipsis;
+     text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: $rowNam;
+  -webkit-box-orient: vertical;word-wrap:break-word;
+}
+*{
+  padding: 0;margin: 0;
+}
+html{
+  width: 100%;
+}
+body{font-size: 14px;min-width: 1200px;font-family: 'Microsoft YaHei';width: 100%;}
+li{ list-style-type:none; vertical-align:middle;}
+input{vertical-align:middle;}
+a{text-decoration: none;}
+.f-l{float: left;}
+.f-r{float: right;}
+.w-1200{width: 1200px;margin: 0 auto;}
+.icon{
+  background: url('http://s.lbiao.com/resources/shop/2017/images/icon.png') no-repeat;
+}
+.anm{-webkit-transition: all 0.5s linear 0s;-o-transition: all 0.5s linear 0s;-moz-transition: all 0.5s linear 0s;transition: all 0.5s linear 0s}
+.anm-late{-webkit-transition: all 0.1s linear 0.4s;-o-transition: all 0.1s linear 0.4s;-moz-transition: all 0.1s linear 0.4s;transition: all 0.1s linear 0.4s}
+.anm-scale:hover{
+  -webkit-transform: scale(1.1);
+     -moz-transform: scale(1.1);
+      -ms-transform: scale(1.1);
+       -o-transform: scale(1.1);
+          transform: scale(1.1);
+}
+.content-title{
+  @include wh(100%,49px);
+  border-bottom: 1px solid #ddd;
+  line-height: 49px;
+  margin-bottom: 30px;
+  margin-top: 20px;
+  h2{
+    border-bottom: 3px solid $bg-hover;
+    font-size: 24px;
+    display: inline-block;
+    height: 46px;
+  }
+  .title-l{
+    color: $bg;
+    margin-right: 10px;
+  }
+  .title-r{
+    color: #000;
+  }
+}
+.hover-change-bg:hover{
+  .pic-text-show{
+      background: rgba(195, 149, 89,0.8);;
+  }
+}
+.pic-text-show{
+  position: absolute;
+  background: rgba(0,0,0,0.6);
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  line-height: 40px;
+  height: 40px;
+  p{
+    text-align: center;
+    color: white;
+    font-size: 14px;
+    padding:0 10px;
+  }
+}
+.rankBg{
+  padding: 0 0 0 30px;
+  background: url("http://s.lbiao.com/resources/shop/2017/images/list-xl.png") no-repeat;
+}
+header{
+  height: 40px;
+  line-height: 40px;
+  width: 100%;
+  background-color: #e6e6e6;
+  li{
+    float: left;
+    a{
+      cursor: pointer;
+      padding: 0 10px;color: #666;
+      &:hover{color: $bg}
+    }
+  }
+  font{float: left;color: #666;}
+}
+footer{
+  height: 200px;
+  background-color: $bg;
+  color: white;
+  padding: 10px 0;
+  .footer-l-t{
+    height: 44px;
+    line-height: 44px;
+    a{padding: 0 10px;color: white;font-size: 16px;}
+  }
+  .footer-l-b{
+    font-size: 12px;
+    p{height: 26px;line-height: 23px;margin-left: 10px;}
+  }
+  .footer-r{
+    margin-top: 20px;
+    section{
+      float: left;
+      p{text-align: center;margin-bottom: 10px;}
+      img{@include wh(120px,120px);}
+      padding: 0 10px;
+    }
+  }
+}

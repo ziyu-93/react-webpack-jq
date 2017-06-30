@@ -1,0 +1,697 @@
+
+@import "./public.scss";
+.secondT{
+  height: 85px;
+  padding: 20px 0;
+  .secendT-r{
+    height: 42px;
+    margin-top: 23px;
+    -webkit-border-radius: 5px;
+       -moz-border-radius: 5px;
+            border-radius: 5px;
+    border:1px solid #ddd;
+    position: relative;
+    input{
+      width: 465px;
+      height: 40px;
+      outline:inherit;
+      padding-left: 15px;
+      float: left;
+      border:0;
+      font-size: 14px;
+      margin: 1px 0 1px 2px;
+    }
+    span{
+      float: left;
+      background-color: $bg;
+      height: 44px;
+      font-size: 14px;
+      letter-spacing: 4px;
+      color: white;
+      line-height: 44px;
+      width: 80px;
+      text-align: center;
+      position: absolute;
+      right: 0;
+      top: -1px;
+      -webkit-border-radius: 0 5px 5px 0;
+         -moz-border-radius: 0 5px 5px 0;
+              border-radius: 0 5px 5px 0;
+    }
+  }
+}
+.nav{
+  height: 500px;
+  font-size: 18px;
+  color: white;
+  .nav-l{
+    @include wh(260px,100%);
+    background-color:#dba865;
+    position: relative;
+    &:before{
+      content: "";
+      @include wh(268px,7px);
+      position: absolute;
+      left: 0;
+      top: -7px;
+      background: url("http://s.lbiao.com/resources/shop/2017/images/nav-top.png") no-repeat;
+    }
+    cursor: pointer;
+    .nav-l-t{
+      border-bottom: 1px dashed #e9c9a0;
+      padding: 12px 20px;
+      .icon-nav-jt{background-position:-120px 0;@include wh(20px,20px);margin-top: 2px}
+    }
+    .nav-l-b{
+      font-size: 16px;
+      .nav-l-b-nav{
+
+          height: 89px;
+          border-bottom: 1px dashed #e9c9a0;
+          position: relative;
+          div{
+            height: 50px;
+            line-height: 50px;
+            padding: 0 15px;
+            .icon{
+              @include wh(40px,40px);
+              float: left;
+              margin-top: 5px;
+            }
+            .icon-nav-dj{background-position: 0 -80px}
+            .icon-nav-sh{background-position: -40px -80px}
+            .icon-nav-hh{background-position: -82px -80px}
+            .icon-nav-qm{background-position: -118px -80px}
+            .icon-nav-ss{background-position: -160px -80px}
+            font{
+              float: right;
+            }
+          }
+          ul{
+            padding-left: 20px;
+          }
+          li{
+            float: left;
+            font-size: 14px;
+            margin-right: 7px;
+            a{
+              padding: 0 3px;
+              &:hover{background-color:white;color: #000}
+            }
+          }
+          .pro-list{
+            display: none;
+            padding: 15px;
+            background-color: $bg-hover;
+            position: absolute;
+            top: 0;
+            left: 260px;
+            @include wh(910px,60px);
+            opacity: 0.9;
+            z-index: 999;
+            a{
+              padding: 3px 5px;
+            }
+          }
+          &:hover{
+            background-color: $bg-hover;
+            .pro-list{display: block;}
+          }
+      }
+    }
+  }
+  .nav-r{
+    width: 940px;
+    background-color: $bg;
+    cursor: pointer;
+    .nav-r-t{
+      height: 50px;
+      ul{
+        padding: 0 10px;
+      }
+      li{
+        float: left;
+        width: 16.6%;
+        text-align: center;
+        height: 50px;
+        line-height: 50px;
+        &:hover{background-color: $bg-hover}
+      }
+    }
+    .loop{
+      @include wh(100%,450px);
+      position: relative;
+      .hd {
+        position: absolute;
+        bottom: 12px;
+        right: 18px;
+        z-index: 100;
+        li{
+          @include wh(30px,5px);
+          background: rgba(255,255,255,0.8);
+          float: left;
+          margin-right: 5px;
+        }
+        .on{
+          background: rgba(195, 149, 89,0.8);
+        }
+      }
+      .pic-loop-wrap{
+        @include wh(100%,100%);
+        .bd{
+          @include wh(100%,100%);
+          .loop-item{
+            @include wh(100%,100%);
+            img{
+              @include wh(100%,100%);
+            }
+          }
+        }
+      }
+    }
+  }
+}
+/*今日焦点*/
+.fouse{
+  height: 410px;
+  .fouse-l{
+    @include wh(864px,100%);
+    margin-right: 26px;
+    .pic-text-wrap{
+      float: left;
+      @include wh(50%,155px);
+      div{
+        @include wh(50%,100%);
+        overflow: hidden;
+        img{
+          @include wh(100%,100%);
+        }
+      }
+      .text{
+        cursor: pointer;
+        width: 196px;
+        padding: 0 10px;
+        line-height: 25px;
+        .fouse-title{
+          margin: 10px 0;
+          color: #333;
+        }
+        .fouse-text{
+          color: #666;
+          @include chaochu(3);
+        }
+      }
+      &:hover .text{
+        background-color: $bg;
+        .fouse-text{
+          color: white;
+        }
+        .fouse-title{
+          color: white;
+        }
+      }
+    }
+  }
+  .fouse-r{
+    @include wh(310px,100%);
+    .info-list{
+      padding-left: 20px;
+      background: url("http://s.lbiao.com/resources/shop/2017/images/list-xl.png") no-repeat 0 0;
+      .item-info{
+        height: 30px;
+        line-height: 30px;
+        cursor:pointer;
+        .pay{
+          color: #CC0033;
+          margin-right: 8px;
+          margin-left: 10px;
+          width: 70px;
+          float: left;
+          position: relative;
+          .pay-icon{
+            display: none;
+            @include wh(160px,160px);
+            z-index: 999;
+            position: absolute;
+            top: 30px;
+            left: 0;
+            border: 1px solid #ddd;
+          }
+          &:hover{
+            .pay-icon{
+              display: block;
+            }
+          }
+        }
+        .text{
+          @include chaochu(1);
+          float: right;
+          width: 200px;
+          &:hover{
+            color: $bg
+          }
+        }
+      }
+    }
+  }
+}
+/*腕表品鉴*/
+.pic-show{
+  height: 494px;
+  overflow: hidden;
+  .pic-show-content{
+    .pic-show-content-l{
+      @include wh(202px,400px);
+      float: left;
+    }
+    height: 394px;
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
+    .pic-show-item{
+      cursor: pointer;
+      position: relative;
+      margin: 0 10px 10px 0;
+      float: left;
+      overflow: hidden;
+      img{
+        @include wh(100%,100%);
+      }
+      &:hover{
+        .pic-text{
+          bottom: 0;
+        }
+      }
+      .pic-text{
+        position: absolute;
+        background: rgba(0,0,0,0.6);
+        left: 0;
+        bottom: -100%;
+        width: 100%;
+        padding: 10px 0;
+        p{
+          color: white;
+          font-size: 14px;
+          padding:0 10px;
+        }
+      }
+    }
+    div:nth-of-type(4),div:nth-of-type(6){
+      margin: 0;
+    }
+  }
+}
+/*购表指南*/
+.buy-watch{
+  height: 960px;
+  overflow: hidden;
+  .buy-watch-t{
+    height: 475px;
+    margin-bottom: 30px;
+    .buy-watch-loop{
+      @include wh(875px,475px);
+      position: relative;
+      .hd{
+        position: absolute;
+        left: 0;
+        bottom: 17px;
+        z-index: 999;
+        cursor: pointer;
+        li{
+          float: left;
+          @include wh(30px,5px);
+          background: rgba(255,255,255,0.8);
+          margin-left: 8px;
+        }
+        .on{
+          background: rgba(195, 149, 89,0.8);
+        }
+      }
+      .buy-watch-loop-wrap{
+        @include wh(100%,100%);
+        .bd{
+          @include wh(100%,100%);
+          .buy-watch-loop-item{
+            position: relative;
+            height: 475px;
+          }
+          img{
+            @include wh(100%,100%);
+          }
+        }
+      }
+    }
+    .buy-watch-t-r{
+      cursor: pointer;
+      @include wh(300px,475px);
+      position: relative;
+      overflow: hidden;
+      img{
+        @include wh(100%,100%);
+      }
+    }
+  }
+  .buy-watch-b{
+    .buy-watch-b-l{
+      @include wh(875px,360px);
+      li{
+        cursor: pointer;
+        float: left;
+        margin-right: 25px;
+        &:nth-of-type(3){margin: 0}
+        @include wh(275px,360px);
+        overflow: hidden;
+        position: relative;
+        img{
+          @include wh(100%,100%);
+        }
+        p{
+          @include chaochu(1);
+        }
+      }
+    }
+    .buy-watch-b-r{
+      @include wh(300px,360px);
+      .content-title{
+        margin-top: 0;
+        margin-bottom: 10px;
+      }
+      .info-list{
+        padding-left: 20px;
+        background: url("http://s.lbiao.com/resources/shop/2017/images/list-xl.png") no-repeat 0 0;
+        .item-info{
+          height: 30px;
+          line-height: 30px;
+          cursor:pointer;
+          .text{
+            margin-left: 10px;
+            @include chaochu(1);
+            &:hover{
+              color: $bg
+            }
+          }
+        }
+      }
+    }
+  }
+}
+/*图片推荐*/
+.pic-recommend{
+  height: 570px;
+  overflow: hidden;
+  .pic-recommend-content{
+    @include wh(100%,470px);
+    overflow: hidden;
+    .pic-recommend-l{
+      overflow: hidden;
+      @include wh(875px,470px);
+      position: relative;
+      .pic-recommend-loop{
+        @include wh(875px,470px);
+        .big-img{
+          @include wh(100%,100%);
+          position: relative;
+          img{
+            @include wh(100%,100%);
+          }
+          &:hover{
+            .big-img-text{
+              background: rgba(195, 149, 89,0.8);
+            }
+          }
+          .big-img-text{
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height: 80px;
+            line-height: 80px;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            padding-left: 15px;
+            font-size: 18px;
+            width: 100%;
+          }
+        }
+      }
+      a{
+        position: absolute;
+        @include wh(40px,40px);
+        background-position: 0 -200px;
+        right: 60px;
+        bottom: 20px;
+        opacity: .6;
+      }
+      .prev:hover{
+        background-position: 0 -240px;
+      }
+      .next{
+        background-position: -40px -200px;
+        right: 20px;
+        &:hover{
+          background-position: -40px -240px;
+        }
+      }
+    }
+    .pic-recommend-r{
+      @include wh(300px,470px);
+      li{
+        cursor: pointer;
+        @include wh(100%,140px);
+        overflow: hidden;
+        margin-bottom: 25px;
+        &:nth-of-last-type(1){
+          margin:0;
+        }
+        img{
+          @include wh(100%,100%);
+        }
+      }
+    }
+  }
+}
+/*热点评论*/
+.hot-commend{
+  height: 960px;
+  margin-bottom: 30px;
+  .hot-commend-l{
+    @include wh(875px,100%);
+    ul{
+      overflow: hidden;
+      @include wh(835px,860px);
+      padding: 0 20px;
+    }
+    li{
+      @include wh(100%,185px);
+      margin-top: 30px;
+      overflow: hidden;
+      &:nth-of-type(1){margin-top: 10px}
+      .hot-commend-item-l{
+        @include wh(130px,142px);
+        margin-right: 20px;
+        img{
+          @include wh(80px,80px);
+          -webkit-border-radius: 50%;
+             -moz-border-radius: 50%;
+                  border-radius: 50%;
+        }
+        p{
+          line-height: 30px;
+          color: #09a3ea;
+          .data{
+            font-size: 12px;
+            color: #999999;
+          }
+        }
+      }
+      .hot-commend-item-r{
+        width: 643px;
+        border: 1px solid #ddd;
+        padding: 24px 20px;
+        position: relative;
+        &::before{
+          position: absolute;
+          top: 40px;
+          left: -9px;
+          content: "";
+          @include wh(9px,20px);
+          background: url("http://s.lbiao.com/resources/shop/2017/images/icon.png") no-repeat -80px -40px;
+        }
+        .hot-commend-item-r-con{
+          @include chaochu(2);
+          color: #666666;
+          height: 42px;
+        }
+        .hot-commend-item-r-img{
+          div{
+            @include wh(82px,82px);
+            cursor: pointer;
+            float: left;
+            margin: 10px 10px 0 0;
+            overflow: hidden;
+            img{
+              @include wh(100%,100%);
+            }
+          }
+        }
+      }
+    }
+  }
+  .hot-commend-r{
+    @include wh(300px,100%);
+    li{
+      @include wh(50%,152px);
+      margin-bottom: 20px;
+      cursor: pointer;
+      img{
+        padding: 10px;
+        width: 130px;
+        height: 50%;
+      }
+      p{text-align: center;}
+      &:hover{background-color: $bg;color: white}
+    }
+  }
+}
+/*最新腕表*/
+.new-watch{
+  height: 950px;
+  overflow: hidden;
+  ul{
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
+            position: relative;
+    @include wh(100%,840px);
+    border-top: 1px solid #ddd;
+    margin-top: 10px;
+    &:before{
+      content: "";
+      @include wh(1px,840px);
+      position: absolute;
+      left: 0;
+      top: 0;
+      background-color: #ddd;
+      z-index: 999;
+    }
+  }
+  li{
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
+            position: relative;
+    @include wh(300px,419px);
+    cursor: pointer;
+    &:hover{
+      .new-watch-img img{
+        -webkit-transform: translateX(20px);
+           -moz-transform: translateX(20px);
+            -ms-transform: translateX(20px);
+             -o-transform: translateX(20px);
+                transform: translateX(20px);
+      }
+      .new-watch-name{
+        color: $bg;
+      }
+    }
+    .new-watch-img{
+      height: 300px;
+      margin-bottom: 30px;
+      overflow: hidden;
+      img{
+        @include wh(100%,100%);
+      }
+    }
+    .new-watch-name{
+      @include chaochu(2);
+      padding: 0 20px;
+      margin-bottom: 20px;
+      font-size: 16px;
+    }
+    &::before{
+      content: "";
+      @include wh(1px,420px);
+      background-color: #ddd;
+      position: absolute;
+      top: 0;
+      right: 0;
+      z-index: 999;
+    }
+    &::after{
+      content: "";
+      @include wh(300px,1px);
+      background-color: #ddd;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+    }
+
+  }
+}
+/*腕表排行*/
+.watch-rank{
+  overflow: hidden;
+  width: 1218px;
+  .watch-rank-wrap{
+    margin: 80px 0 50px 6px;
+    @include wh(364px,100%);
+    margin-right: 54px;
+    float: left;
+    &:nth-of-type(3){
+      margin-right:0;
+      margin-left: 0;
+    }
+    .rank-title{
+      height: 45px;
+      line-height: 45px;
+      border-bottom: 1px solid #ddd;
+      h3{
+        height: 43px;
+        display: inline-block;
+        border-bottom: 3px solid $bg-hover;
+        font-size: 18px;
+      }
+    }
+    .rank-main{
+      @include wh(364px,435px);
+      background-color: #fff;
+      -webkit-box-shadow: 0 0 20px rgba(0,0,0,0.1);
+         -moz-box-shadow: 0 0 20px rgba(0,0,0,0.1);
+              box-shadow: 0 0 20px rgba(0,0,0,0.1);
+      &:hover{
+        -webkit-box-shadow: 0 0 20px $bg;
+           -moz-box-shadow: 0 0 20px $bg;
+                box-shadow: 0 0 20px $bg;
+      }
+      .rank-nav{
+        height: 50px;
+        line-height: 50px;
+        border-bottom: 1px solid #ddd;
+        li{
+          float: left;
+          width: 20%;
+          text-align: center;
+          font-size: 16px;
+          cursor: pointer;
+        }
+        .on{
+          color: $bg;
+        }
+      }
+      .rank-content{
+        margin: 20px;
+        .rankBg{
+          @include wh(100%,100%);
+          li{
+            height: 30px;
+            line-height: 30px;
+            @include chaochu(1);
+            cursor: pointer;
+            &:hover{
+              color: $bg;
+            }
+          }
+        }
+      }
+    }
+  }
+}
