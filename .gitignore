@@ -5,5 +5,5 @@ node_modules
 build
 
 # file
-.yarn.lock
+*.lock
 .DS_Store
