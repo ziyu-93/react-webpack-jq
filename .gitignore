@@ -1,9 +1,9 @@
-# dependencies
-/node_modules
+# Plugin
+node_modules
 
 # production
-/build
+build
 
-# misc
+# file
+.yarn.lock
 .DS_Store
-yarn.lock
