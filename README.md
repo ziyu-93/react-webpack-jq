@@ -1,8 +1,9 @@
 # My study
     react/webpack/jq插入
 
-    [下载压缩包](https://github.com/ziyu-93/react-webpack-jq/archive/master.zip)
-## 执行以下步骤，查看效果/Perform the following steps to view the effect.
+    [下载](https://github.com/ziyu-93/react-webpack-jq/archive/master.zip "悬停显示")
+    * [Counter Vanilla](http://redux.js.org/docs/introduction/Examples.html#counter-vanilla)
+# 执行以下步骤，查看效果/Perform the following steps to view the effect.
 
     1、npm install.
 
@@ -10,10 +11,10 @@
 
     3、localhost:3000
 
-## build webpack2
+# build webpack2
     module.exports={
 
-      //公共路径 context,
+      context,
 
       enter,
 
@@ -50,7 +51,7 @@
   }
 }
 
-## pull Error and .gitignore Error
+# pull Error and .gitignore Error
     git checkout master
 
     git merge origin/master --allow-unrelated-histories
