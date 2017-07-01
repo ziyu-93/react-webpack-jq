@@ -1,5 +1,5 @@
 # My study
-    react/webpack/jq插入
+    react/webpack/jq
 
 
 # Perform the following steps to view the effect.
@@ -54,7 +54,6 @@
     git checkout master
 
     git merge origin/master --allow-unrelated-histories
-
+### [Code of Conduct](https://code.facebook.com/codeofconduct)
     git rm --cached <文件名字>
     [下载](https://github.com/ziyu-93/react-webpack-jq/archive/master.zip "悬停显示")
-    * [Counter Vanilla](http://redux.js.org/docs/introduction/Examples.html#counter-vanilla)
