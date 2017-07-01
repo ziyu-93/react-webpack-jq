@@ -1,8 +1,9 @@
 # My study
     react/webpack/jq
 
-[下载](https://github.com/ziyu-93/react-webpack-jq/archive/master.zip "悬停显示")
+
 # Perform the following steps to view the effect.
+[ Download zip ](https://github.com/ziyu-93/react-webpack-jq/archive/master.zip "悬停显示")
 
     1、npm install.
 
