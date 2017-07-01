@@ -1,8 +1,8 @@
 # My study
     react/webpack/jq插入
 
-## 执行以下步骤，查看效果/Perform the following steps to view the effect.
     [下载压缩包](https://github.com/ziyu-93/react-webpack-jq/archive/master.zip)
+## 执行以下步骤，查看效果/Perform the following steps to view the effect.
 
     1、npm install.
 
@@ -12,15 +12,23 @@
 
 ## build webpack2
     module.exports={
-      context,
+
+      //公共路径 context,
+
       enter,
+
       output,
+
       devServer,
+
       devtool,
+
       resolve,
+
       module={
         use plugins build html sass js jsx
       }
+
       plugins={
 
         new webpack.optimize.CommonsChunkPlugin({})
