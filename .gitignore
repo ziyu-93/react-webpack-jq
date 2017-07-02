@@ -1,0 +1,11 @@
+# Plugin
+node_modules
+
+# production
+build
+
+# file
+*.lock
+
+.DS_Store
+*/.DS_Store
