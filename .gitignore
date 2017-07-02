@@ -3,7 +3,9 @@ node_modules
 
 # production
 build
+/app/.DS_Store
 
 # file
 *.lock
+
 */.DS_Store
