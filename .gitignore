@@ -3,7 +3,7 @@ node_modules
 
 # production
 build
-/src
+src
 # file
 *.lock
 
