@@ -321,7 +321,7 @@ class BuyWatch extends Component {
     jQuery("#buy-watch")
       .slide({
         effect: "leftLoop",
-        autoPlay: false,
+        autoPlay: true,
         delayTime: 1000,
         easing: "swing",
         interTime: 3000
