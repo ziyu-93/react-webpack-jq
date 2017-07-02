@@ -6,4 +6,4 @@ build
 
 # file
 *.lock
-.DS_Store
+*/.DS_Store
