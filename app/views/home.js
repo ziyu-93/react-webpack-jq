@@ -5,6 +5,12 @@ import ContentTitle from "./../components/title.js";
 // import Style from "style-it";
 // let img = require("./image/大闹天竺.png");
 
+import httpRequest from "./../tool/tools.js";
+// httpRequest.fetchPost("https://api.myjson.com/bins/15gw3j", {
+//   100: 'a',
+//   2: 'b'
+// }, console.log)
+
 //首页 import 模块的时候，要看对方输出模块的格式，如果是default 就不需要加{} 如果是export{} 引用的时候就需要加上{}
 export default class Index extends Component {
   render() {
