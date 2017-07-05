@@ -7,6 +7,6 @@ import { combineReducers } from 'redux';
 
 import Home from './homeReducer.js';
 
-export default rootReducer = combineReducers({
+export default Reducer = combineReducers({
   Home
 })

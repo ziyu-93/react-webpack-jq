@@ -52,14 +52,17 @@
 }
 
 # Pull Error and .gitignore Error
+```
     git checkout master 切换仓库
 
     git merge origin/master --allow-unrelated-histories
 
     当pull不下来并且提示 histories 的时候使用
 
-    git rm --cached <文件名字> 删除远程文件
+    git rm --cached <文件名字> 删除远程文件/git rm "地址+文件名字"
 
     从新 git commit -m "要删除的文件"
 
     git push 上传
+
+    state ={} 编辑器不报错，但是浏览器会支出错误

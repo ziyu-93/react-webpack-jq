@@ -4,7 +4,7 @@
  */
 import thunk from 'redux-thunk';
 import { createStore, applyMiddleware, compose } from 'redux';
-import rootReducer from "./../reducer/rootReducer.js";
+import Reducer from "./../reducer/rootReducer.js";
 
 
 let store = createStore(Reducer, {}, compose(

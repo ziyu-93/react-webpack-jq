@@ -2,14 +2,14 @@ import React, { Component } from "react";
 import Header from "./../components/header.js";
 import { Footer } from "./../components/footer.js";
 import ContentTitle from "./../components/title.js";
+import SecondTitle from "./../components/search.js";
+import Nav from "./../components/nav.js";
 // import Style from "style-it";
 // let img = require("./image/大闹天竺.png");
-
+import warning from "./../tool/warning.js";
 import httpRequest from "./../tool/tools.js";
-// httpRequest.fetchPost("https://api.myjson.com/bins/15gw3j", {
-//   100: 'a',
-//   2: 'b'
-// }, console.log)
+import { Link } from "react-router-dom";
+//httpRequest.fetchGet("https://api.myjson.com/bins/cle13", "", (data) => console.log(data))
 
 //首页 import 模块的时候，要看对方输出模块的格式，如果是default 就不需要加{} 如果是export{} 引用的时候就需要加上{}
 export default class Index extends Component {
@@ -18,7 +18,7 @@ export default class Index extends Component {
       <section>
         <Header/>
         <SecondTitle/>
-        <Nav/>
+        <Nav state="block"/>
         <Fouse/>
         <PicShow/>
         <BuyWatch/>
@@ -32,185 +32,6 @@ export default class Index extends Component {
   }
 }
 
-//搜索模块
-class SecondTitle extends Component {
-  render() {
-    return (
-      <section className="w-1200 secondT">
-          <a href="/">
-            <img src="http://img.lbiao.com/upload/image/logo.png"/>
-          </a>
-          <div className="secendT-r f-r">
-            <form>
-              <input placeholder="腕表品牌、系统、型号"/>
-            </form>
-            <span>搜索</span>
-          </div>
-      </section>
-    )
-  }
-}
-
-const Navlist = ({nav, name, content}) => (
-  <li className="nav-l-b-nav anm a">
-    <div>
-      <i className={`icon ${name}`}></i>
-      <span>{nav}</span>
-      <font>></font>
-    </div>
-    <ul><li><a className="anm">百达翡丽</a></li><li><a className="anm">朗格</a></li><li><a className="anm">宝铂</a></li><li><a className="anm">江诗丹顿</a></li></ul>
-    <aside className="pro-list anm">
-      {content}
-    </aside>
-  </li>
-)
-
-//banner Nav
-class Nav extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {}
-  }
-  componentDidMount() {
-    //顶部banner
-    jQuery(".loop")
-      .slide({
-        autoPlay: true,
-        delayTime: 2000,
-        easing: "swing",
-        effect: "fold",
-        interTime: 5000,
-        trigger: "click"
-      });
-  }
-  render() {
-    return (
-      <section className="w-1200 nav">
-        <article className="nav-l f-l">
-          <div className="nav-l-t">
-            <span>乐表腕表库</span><i className="f-r icon icon-nav-jt"></i>
-          </div>
-          <div className="nav-l-b">
-            <ul>
-              { /* <Style>
-                {`
-                  .nav-l-b-nav:hover{
-                    color:red;
-                  }
-                `}
-              </Style> */ }
-              <Navlist name="icon-nav-dj" nav="顶级" content=
-      {
-      <ul>
-                    <li><a className="anm">百达翡丽</a></li>
-                    <li><a className="anm">百达翡丽</a></li>
-                    <li><a className="anm">百达翡丽</a></li>
-                    <li><a className="anm">百达翡丽</a></li>
-                    <li><a className="anm">百达翡丽</a></li>
-                    <li><a className="anm">百达翡丽</a></li>
-                    <li><a className="anm">百达翡丽</a></li>
-                    <li><a className="anm">百达翡丽</a></li>
-                  </ul>
-      } />
-              <Navlist name="icon-nav-sh" nav="奢华" content=
-      {
-      <ul>
-                    <li><a className="anm">百达翡丽</a></li>
-                    <li><a className="anm">百达翡丽</a></li>
-                    <li><a className="anm">百达翡丽</a></li>
-                    <li><a className="anm">百达翡丽</a></li>
-                    <li><a className="anm">百达翡丽</a></li>
-                    <li><a className="anm">百达翡丽</a></li>
-                    <li><a className="anm">百达翡丽</a></li>
-                    <li><a className="anm">百达翡丽</a></li>
-                  </ul>
-      } />
-              <Navlist name="icon-nav-hh" nav="豪华" content=
-      {
-      <ul>
-                    <li><a className="anm">百达翡丽</a></li>
-                    <li><a className="anm">百达翡丽</a></li>
-                    <li><a className="anm">百达翡丽</a></li>
-                    <li><a className="anm">百达翡丽</a></li>
-                    <li><a className="anm">百达翡丽</a></li>
-                    <li><a className="anm">百达翡丽</a></li>
-                    <li><a className="anm">百达翡丽</a></li>
-                    <li><a className="anm">百达翡丽</a></li>
-                  </ul>
-      } />
-              <Navlist name="icon-nav-qm" nav="亲民" content=
-      {
-      <ul>
-                    <li><a className="anm">百达翡丽</a></li>
-                    <li><a className="anm">百达翡丽</a></li>
-                    <li><a className="anm">百达翡丽</a></li>
-                    <li><a className="anm">百达翡丽</a></li>
-                    <li><a className="anm">百达翡丽</a></li>
-                    <li><a className="anm">百达翡丽</a></li>
-                    <li><a className="anm">百达翡丽</a></li>
-                    <li><a className="anm">百达翡丽</a></li>
-                  </ul>
-      } />
-              <Navlist name="icon-nav-ss" nav="时尚" content=
-      {
-      <ul>
-                    <li><a className="anm">百达翡丽</a></li>
-                    <li><a className="anm">百达翡丽</a></li>
-                    <li><a className="anm">百达翡丽</a></li>
-                    <li><a className="anm">百达翡丽</a></li>
-                    <li><a className="anm">百达翡丽</a></li>
-                    <li><a className="anm">百达翡丽</a></li>
-                    <li><a className="anm">百达翡丽</a></li>
-                    <li><a className="anm">百达翡丽</a></li>
-                  </ul>
-      } />
-            </ul>
-          </div>
-        </article>
-        <article className="nav-r f-r">
-          <div className="nav-r-t">
-            <ul>
-              <li className="anm">咨询</li>
-              <li className="anm">腕表库</li>
-              <li className="anm">品牌大全</li>
-              <li className="anm">排行榜</li>
-              <li className="anm">商铺</li>
-              <li className="anm">维修</li>
-            </ul>
-          </div>
-          <div className="loop">
-            <ul className="hd">
-              <li></li>
-              <li></li>
-              <li></li>
-              <li></li>
-              <li></li>
-            </ul>
-            <div className="pic-loop-wrap">
-              <div className="bd">
-                <div className="loop-item">
-                  <img src="https://www.omegawatches.com.hk/images/homepage/Carrousel_Home/home_PO_ETNZ_DeepBlack_large.jpg"/>
-                </div>
-                <div className="loop-item">
-                  <img src="https://www.omegawatches.com.hk/images/homepage/Carrousel_Home/home_SpeedmasterFans_large.jpg"/>
-                </div>
-                <div className="loop-item">
-                  <img src="https://www.omegawatches.com.hk/images/homepage/Carrousel_Home/home_SpeedmasterAnniversary_large.jpg"/>
-                </div>
-                <div className="loop-item">
-                  <img src="https://www.omegawatches.com.hk/images/homepage/Carrousel_Home/home_Speedmaster-GC-large.jpg"/>
-                </div>
-                <div className="loop-item">
-                  <img src="http://www.lbiao.com/upload/image/201704/146abad1-e6fb-4830-9046-2d1a3ca0edcf.jpg"/>
-                </div>
-              </div>
-            </div>
-          </div>
-        </article>
-      </section>
-    )
-  }
-}
 //图文
 const PicText = ({url, title, text}) => (
   <div className="pic-text-wrap">
@@ -556,31 +377,48 @@ class HotCommend extends Component {
     )
   }
 }
-const NewWatchItem = ({src, name}) => (
+const NewWatchItem = ({src, name, id}) => (
   <li className="f-l">
+    <Link to={id}>
     <div className="new-watch-img">
       <img className="anm" src={src}/>
     </div>
     <div className="new-watch-name">
       <p>{name}</p>
     </div>
+    </Link>
   </li>
 )
 //最新腕表
 class NewWatch extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      data: []
+    }
+  }
+  // state = {
+  //   data: []
+  // }
+  componentWillMount() {
+    httpRequest.fetchGet("./data/data.json", "", (data) => {
+      this.setState({
+        data: data.newWatch
+      })
+    })
+  }
   render() {
+    const {data} = this.state;
+    console.log(data.length);
     return (
       <section className="w-1200 new-watch">
         <ContentTitle english="NewWatch" text="最新腕表"/>
         <ul>
-          <NewWatchItem src="http://img.lbiao.com//upload/ls_g_img0509/1643/P08MA/2308.jpg" name="法国赫柏林Michel Herbelin-Metropole 大都会系列 1643"/>
-          <NewWatchItem src="http://img.lbiao.com//upload/ls_g_img0509/1666/15/4180.jpg" name="法国赫柏林Michel Herbelin-Newport Yacht Club 纽波特游艇俱乐部系列 皇家蓝 1666/15机械男表"/>
-          <NewWatchItem src="http://img.lbiao.com//upload/ls_g_img0509/3196.1N/6190.jpg" name="拥有拉丁血统的瑞士腕表品牌：瑞士库尔沃-历史学家系列-"/>
-          <NewWatchItem src="http://img.lbiao.com//upload/ls_g_img0509/9670A-BU-P670BU1/8062.jpg" name="瑞士艾美达（Armand Nicolet）-古董机芯限量系列 L10 96"/>
-          <NewWatchItem src="http://img.lbiao.com//upload/ls_g_img0509/GA-110HC-1APR/9733.jpg" name="卡西欧 GA-110HC-1APR防水防震防磁男士手表"/>
-          <NewWatchItem src="http://img.lbiao.com//upload/ls_g_img0509/0961DW/11197.jpg" name="DW 丹尼尔惠灵顿（Daniel Wellington）—摩登系列 0961DW"/>
-          <NewWatchItem src="http://img.lbiao.com//upload/ls_g_img0509/T097.007.26.033.00/12823.jpg" name="天梭TISSO-港湾系列 T097.007.26.033.00 自动机械女表"/>
-          <NewWatchItem src="http://img.lbiao.com//upload/ls_g_img0509/T055.417.11.037.00/14090.jpg" name="天梭Tissot-PRC200系列 T055.417.11.037.00 石英男表"/>
+          {
+      data.length !== 0 ? data.map((e, i) => {
+        return <NewWatchItem key={i} src={e.img} name={e.text} id={"/nWatch/" + e.newWatchId}/>
+      }) : <li>数据出问题</li>
+      }
         </ul>
       </section>
     )

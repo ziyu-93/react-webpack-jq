@@ -42,7 +42,7 @@ module.exports = {
     path: path.resolve(__dirname + '/build'),
     // 对于热替换(HMR)是必须的，让 webpack 知道在哪里载入热更新的模块(chunk)
     // 开发模式下，的publicPath 可能是/   生产模式下 是上线的地址
-    publicPath: './',
+    publicPath: 'http://localhost:3000/',
   //公共依赖文件library
   },
 
