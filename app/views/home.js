@@ -18,7 +18,7 @@ export default class Index extends Component {
       <section>
         <Header/>
         <SecondTitle/>
-        <Nav state="block"/>
+        <Nav loopState={true} location={this.props.location.pathname}/>
         <Fouse/>
         <PicShow/>
         <BuyWatch/>
@@ -80,7 +80,7 @@ class Fouse extends Component {
             <TextPic url="http://img.lbiao.com/upload/image/201706/c4a2c754-bd40-43d6-878d-a95d7d64bb90-show.jpg" title="腕表告密佩戴者身份?不想尴尬戴错腕表" text="腕表早已不是当初的计时工具，它某种程度上象征着身份、财富、地位以及男人以作为官方合作伙伴，以以作为官方合作伙伴，以"/>
           </aside>
         </article>
-        <article className="fouse-r f-r">
+        <article className="hotInfor f-r">
           <ContentTitle english="Hot" text="热点资讯"/>
           <aside className="info-list">
             <ListInfo text="鉴赏 | 律动之美 腕表极度简约的线条"/>

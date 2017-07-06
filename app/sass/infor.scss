@@ -1,0 +1,97 @@
+@import "./public.scss";
+
+.infor{
+  .infor-item{
+    border-bottom: 1px dashed #ddd;
+    height: 180px;
+    padding: 20px 10px;
+    &:hover{
+      background-color: $bg;
+      a,.item-r .infor-text a,.item-r .infor-message-wrap{color: white}
+    }
+    .item-l{
+      @include wh(240px,100%);
+      overflow: hidden;
+      img{
+        @include wh(100%,100%);
+        margin-right: 10px;
+      }
+    }
+    .item-r{
+      @include wh(600px,100%);
+      font-size: 20px;
+      .infor-title{
+        margin-bottom: 40px;
+      }
+      .infor-message-wrap{
+        font-size: 12px;
+        color: #999;
+        margin-bottom: 15px;
+        height: 16px;
+        .infor-auther{
+          margin-left: 5px;
+        }
+      }
+      .infor-text{
+        font-size: 14px;
+        line-height: 24px;
+        max-height: 72px;
+        a{
+          color:#666666;
+        }
+      }
+    }
+  }
+}
+.pagination{
+  height: 50px;
+  margin: 20px 0 ;
+  ul{
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: row;
+       -moz-box-orient: horizontal;
+       -moz-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+            cursor: pointer;
+            -webkit-box-pack: center;
+            -webkit-justify-content: center;
+               -moz-box-pack: center;
+                -ms-flex-pack: center;
+                    justify-content: center;
+    li{
+      border: 1px solid #ddd;
+      margin: 0 1px;
+      text-align: center;
+      height: 38px;
+      width: 44px;
+      line-height: 38px;
+      &:nth-of-type(2),&:nth-last-of-type(1){
+        width: 70px;
+      }
+      &:nth-of-type(1){
+        width:50px;
+      }
+      &:hover{
+        background-color: $bg;
+        color: white;
+      }
+    }
+    .on{
+      background-color: $bg;
+      color: white;
+    }
+    .nomore{
+      opacity: 0;
+    }
+    .more{
+      opacity: 1;
+    }
+  }
+}

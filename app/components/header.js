@@ -11,7 +11,7 @@ export default class Header extends Component {
       <header>
         <section className="w-1200">
           <ul className="header-l f-l">
-            <li><a>首页</a></li>
+            <li><Link to={"/"}>首页</Link></li>
             <font>|</font>
             <li><a>微信</a></li>
             <font>|</font>

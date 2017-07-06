@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
+import { Link } from "react-router-dom";
 
 const Navlist = ({nav, name, content}) => (
-  <li className="nav-l-b-nav anm a">
+  <div className="nav-l-b-nav anm a">
     <div>
       <i className={`icon ${name}`}></i>
       <span>{nav}</span>
@@ -11,7 +12,7 @@ const Navlist = ({nav, name, content}) => (
     <aside className="pro-list anm">
       {content}
     </aside>
-  </li>
+  </div>
 )
 
 //banner Nav
@@ -31,17 +32,19 @@ export default class Nav extends Component {
         interTime: 5000,
         trigger: "click"
       });
-    this.props.location !== "" ? this.refs.nav.className = "nav-l-b anm show" : this.refs.nav.className = "nav-l-b anm"
+    this.props.location === "/" ? this.refs.nav.className = "anm nav-l-b" : this.refs.nav.className = "anm nav-l-b show ";
+  }
+  mouseEnter() {
+    //console.log(this.refs.nav)
   }
   render() {
     return (
-      <section className="w-1200 nav clearfix">
-        <article className="nav-l f-l">
+      <section className="w-1200 nav clearfix anm">
+        <article className="nav-l f-l anm" onMouseEnter={() => this.mouseEnter()}>
           <div className="nav-l-t">
             <span>乐表腕表库</span><i className="f-r icon icon-nav-jt"></i>
           </div>
-          <div ref="nav" className="nav-l-b anm">
-            <ul>
+          <div ref="nav" className="anm nav-l-b">
               { /* <Style>
                 {`
                   .nav-l-b-nav:hover{
@@ -114,18 +117,17 @@ export default class Nav extends Component {
                     <li><a className="anm">百达翡丽</a></li>
                   </ul>
       } />
-            </ul>
           </div>
         </article>
         <article className="nav-r f-r">
           <div className="nav-r-t">
             <ul>
-              <li className="anm">咨询</li>
-              <li className="anm">腕表库</li>
-              <li className="anm">品牌大全</li>
-              <li className="anm">排行榜</li>
-              <li className="anm">商铺</li>
-              <li className="anm">维修</li>
+              <li className="anm"><Link to={"/infor"}>咨询</Link></li>
+              <li className="anm"><Link to={"/watchLibrary"}>腕表库</Link></li>
+              <li className="anm"><Link to={"/brand"}>品牌大全</Link></li>
+              <li className="anm"><Link to={"/ranking"}>排行榜</Link></li>
+              <li className="anm"><Link to={"/shops"}>商铺</Link></li>
+              <li className="anm"><Link to={"/service"}>维修</Link></li>
             </ul>
           </div>
           {this.props.loopState ? <div className="loop">
