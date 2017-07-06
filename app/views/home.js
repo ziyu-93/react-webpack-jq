@@ -401,7 +401,7 @@ class NewWatch extends Component {
   //   data: []
   // }
   componentWillMount() {
-    httpRequest.fetchGet("./data/data.json", "", (data) => {
+    httpRequest.fetchGet("./data/data1.json", "", (data) => {
       this.setState({
         data: data.newWatch
       })

@@ -45,25 +45,33 @@ const HotInfo = ({text}) => (
     <span className="text">{text}</span>
   </div>
 )
+import func from "./../tool/converter.js";
 //资讯
 class InforContent extends Component {
   constructor(props) {
     super(props)
+    // 设置当前页码，默认为第一页
     this.state = {
+      pageCurr: 1,
+      createNum: 1,
       data: []
     }
   }
-  componentWillMount() {
-    httpRequest.fetchGet("./data/data.json", "", (data) => {
-      this.setState({
-        data: data.infor
-      })
+  //为什么会无数次的请求 update 一直加载 json 数据
+  // shouldComponentUpdate() {
+  //   httpRequest.fetchGet("./data/data" + `${this.state.pageCurr}` + ".json", "", (data) => {
+  //     this.setState({
+  //       data: data.infor
+  //     })
+  //   })
+  // }
+  handValue(val) {
+    this.setState({
+      data: val
     })
-
   }
   render() {
     const {data} = this.state;
-    console.log(data);
     return (
       <section className="w-1200 clearfix infor">
         <article className="w-875 f-l">
@@ -72,12 +80,13 @@ class InforContent extends Component {
             {
       data.length !== 0 ? data.map((e, i) => {
         return <ListInfor key={i} src={e.img} title={e.title} time={e.time} from={e.from} auther={e.author} context={e.context}/>
-      }) : <li>数据加载失败</li>
+      }) : <li>没有数据了</li>
       }
           </article>
           <Pagination config={{
-        totalPage: 9
-      }}></Pagination>
+        totalPage: 16
+      }} hand={this.handValue.bind(this)}/>
+          { /* this.handValue.bind(this) 可以传值，默认传递的是 子组件hand方法里的值  */ }
         </article>
         <article className="w-300 f-r hotInfor">
           <ContentTitle english="Hot" text="热点资讯"/>
@@ -98,7 +107,12 @@ class InforContent extends Component {
     )
   }
 }
-
+// defaultProps
+InforContent.defaultProps = {
+  config: {
+    totalPage: 16
+  }
+}
 //分页
 class Pagination extends Component {
   constructor(props) {
@@ -106,9 +120,27 @@ class Pagination extends Component {
     // 设置当前页码，默认为第一页
     this.state = {
       pageCurr: 1,
-      createNum: 1
+      createNum: 1,
+      data: []
     }
   }
+  componentWillMount() {
+    httpRequest.fetchGet("./data/data" + `${this.state.pageCurr}` + ".json", "", (data) => {
+      this.setState({
+        data: data.infor
+      })
+      this.props.hand(this.state.data)
+    })
+  }
+  getData(pageCurr) {
+    httpRequest.fetchGet("./data/data" + `${pageCurr}` + ".json", "", (data) => {
+      this.setState({
+        data: data.infor
+      })
+      this.props.hand(this.state.data)
+    })
+  }
+  //创建分页
   create() {
     const {totalPage} = this.props.config;
     const {pageCurr, createNum} = this.state;
@@ -125,7 +157,7 @@ class Pagination extends Component {
         //() => this.go(i)
         pages.push(<li onClick={this.go.bind(this, i)} className={pageCurr === i ? "on" : ""} key={i}>{i}</li>)
       }
-      pages.push(pageCurr < 6 ? <font style={{
+      pages.push(createNum !== totalPage - 6 ? <font style={{
         "height": "38px",
         "width": "44px",
         "textAlign": "center",
@@ -141,24 +173,27 @@ class Pagination extends Component {
   }
   // 更新 state
   go(pageCurr) {
+    let {createNum} = this.state;
+    const {totalPage} = this.props.config;
     this.setState({
       pageCurr,
-      createNum: pageCurr
+      createNum: pageCurr <= totalPage && pageCurr > totalPage - 2 ? totalPage - 6 : pageCurr === totalPage - 3 ? createNum : pageCurr === 1 ? 1 : pageCurr === createNum - 1 ? pageCurr : pageCurr === createNum + 3 ? createNum + 1 : createNum
     })
+    this.getData(pageCurr);
+
   }
+  //上一页
   goPrev() {
-    let {pageCurr} = this.state;
+    let {pageCurr, createNum} = this.state;
     if (--pageCurr === 0) {
       return
     }
     this.go(pageCurr);
   }
+  //下一页
   goNext() {
     let {pageCurr} = this.state;
     let {totalPage} = this.props.config;
-    this.setState({
-      createNum: pageCurr > 4 ? createNum = pageCurr - 2 : pageCurr
-    })
     if (++pageCurr > totalPage) {
       return
     }
