@@ -429,6 +429,7 @@ class NewWatch extends Component {
 class WatchRank extends Component {
   componentDidMount() {
     //腕表排行
+    //插件会给循环的结构体 多重复两个模块出来，分别是第一块和最后一块，因为为了给自动滚动做准备。
     jQuery("#watchBrand")
       .slide({
         effect: "leftLoop",
@@ -538,18 +539,7 @@ class WatchRank extends Component {
               <div className="rank-content">
                 <div className="rankBg">
                   <ul>
-                    <li>顶级</li>
-                    <li>顶级</li>
-                    <li>顶级</li>
-                    <li>顶级</li>
-                    <li>顶级</li>
-                  </ul>
-                </div>
-              </div>
-              <div className="rank-content">
-                <div className="rankBg">
-                  <ul>
-                    <li>顶级</li>
+                    <li>顶级1</li>
                     <li>顶级</li>
                     <li>顶级</li>
                     <li>顶级</li>
@@ -560,18 +550,7 @@ class WatchRank extends Component {
               <div className="rank-content">
                 <div className="rankBg">
                   <ul>
-                    <li>顶级</li>
-                    <li>顶级</li>
-                    <li>顶级</li>
-                    <li>顶级</li>
-                    <li>顶级</li>
-                  </ul>
-                </div>
-              </div>
-              <div className="rank-content">
-                <div className="rankBg">
-                  <ul>
-                    <li>顶级</li>
+                    <li>顶级2</li>
                     <li>顶级</li>
                     <li>顶级</li>
                     <li>顶级</li>
@@ -582,7 +561,29 @@ class WatchRank extends Component {
               <div className="rank-content">
                 <div className="rankBg">
                   <ul>
+                    <li>顶级3</li>
                     <li>顶级</li>
+                    <li>顶级</li>
+                    <li>顶级</li>
+                    <li>顶级</li>
+                  </ul>
+                </div>
+              </div>
+              <div className="rank-content">
+                <div className="rankBg">
+                  <ul>
+                    <li>顶级4</li>
+                    <li>顶级</li>
+                    <li>顶级</li>
+                    <li>顶级</li>
+                    <li>顶级</li>
+                  </ul>
+                </div>
+              </div>
+              <div className="rank-content">
+                <div className="rankBg">
+                  <ul>
+                    <li>顶级5</li>
                     <li>顶级</li>
                     <li>顶级</li>
                     <li>顶级</li>

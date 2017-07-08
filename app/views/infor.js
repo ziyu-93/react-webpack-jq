@@ -89,7 +89,7 @@ class InforContent extends Component {
           <Pagination ref="list" config={{
         totalPage: 15
       }} hand={this.handValue.bind(this)}/>
-          { /* this.handValue.bind(this) 可以传值，默认传递的是 子组件hand方法里的值  */ }
+          { /* this.handValue.bind(this) 可以传值，默认传递的是 子组件hand方法里的值  bind 直接就执行方法*/ }
         </article>
         <article className="w-300 f-r hotInfor">
           <ContentTitle english="Hot" text="热点资讯"/>
@@ -139,7 +139,7 @@ class Pagination extends Component {
     })
   }
   getData(pageCurr) {
-    console.log(window.offsetTop);
+    //console.log(window.offsetTop);
     httpRequest.fetchGet("http://localhost:3000/data/data" + `${pageCurr}` + ".json", {
       page: `${pageCurr}`
     }, (data) => {
@@ -154,7 +154,7 @@ class Pagination extends Component {
         data: []
       })
       this.props.hand(this.state.data)
-      warning("出错了,出错了！！");
+    //warning("出错了,出错了！！");
     })
   }
   // componentDidUpdate(prevProps, prevState) {
