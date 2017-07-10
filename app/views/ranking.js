@@ -14,7 +14,7 @@ export default class Rank extends Component {
       <section className="w-1200">
         <Header/>
         <SecondTitle/>
-        <Nav loopState={false} location={this.props.location.pathname}/>
+        <Nav loopState={false} location={this.props.location.pathname} current={3}/>
         <RankContent/>
         <Footer/>
       </section>

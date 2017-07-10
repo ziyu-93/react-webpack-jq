@@ -400,8 +400,8 @@ class NewWatch extends Component {
   // state = {
   //   data: []
   // }
-  componentWillMount() {
-    httpRequest.fetchGet("./data/data1.json", "", (data) => {
+  componentDidMount() {
+    httpRequest.fetchGet("http://localhost:3000/data/data1.json", "", (data) => {
       this.setState({
         data: data.newWatch
       })
@@ -417,7 +417,7 @@ class NewWatch extends Component {
           {
       data.length !== 0 ? data.map((e, i) => {
         return <NewWatchItem key={i} src={e.img} name={e.text} id={"/nWatch/" + e.newWatchId}/>
-      }) : <li>数据出问题</li>
+      }) : <li>数据加载中</li>
       }
         </ul>
       </section>

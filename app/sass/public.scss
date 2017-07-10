@@ -366,6 +366,9 @@ footer{
           color: white;
           display: block;
         }
+        .currPage{
+          background-color: $bg-hover;
+        }
       }
     }
     .loop{

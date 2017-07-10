@@ -17,10 +17,36 @@ const Navlist = ({nav, name, content}) => (
 
 //banner Nav
 export default class Nav extends Component {
-  // constructor(props) {
-  //   super(props)
-  //   this.state = {}
-  // }
+  constructor(props) {
+    super(props)
+    this.state = {
+      nav: [{
+        name: "咨询",
+        link: "/infor"
+      },
+        {
+          name: "腕表库",
+          link: "/watchLibrary"
+        },
+        {
+          name: "品牌大全",
+          link: "/brand"
+        },
+        {
+          name: "排行榜",
+          link: "/ranking"
+        },
+        {
+          name: "商铺",
+          link: "/shops"
+        },
+        {
+          name: "维修",
+          link: "/service"
+        }
+      ]
+    }
+  }
   componentDidMount() {
     //顶部banner
     jQuery(".loop")
@@ -122,12 +148,13 @@ export default class Nav extends Component {
         <article className="nav-r f-r">
           <div className="nav-r-t">
             <ul>
-              <li className="anm"><Link to={"/infor"}>咨询</Link></li>
-              <li className="anm"><Link to={"/watchLibrary"}>腕表库</Link></li>
-              <li className="anm"><Link to={"/brand"}>品牌大全</Link></li>
-              <li className="anm"><Link to={"/ranking"}>排行榜</Link></li>
-              <li className="anm"><Link to={"/shops"}>商铺</Link></li>
-              <li className="anm"><Link to={"/service"}>维修</Link></li>
+            {
+      this.state.nav.map((e, i) => {
+        return <li className="anm" key={i}>
+                  <Link className={this.props.current === i ? "currPage" : ""} to={e.link}>{e.name}</Link>
+                </li>
+      })
+      }
             </ul>
           </div>
           {this.props.loopState ? <div className="loop">

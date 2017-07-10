@@ -14,7 +14,7 @@ export default class Brand extends Component {
       <section className="w-1200">
         <Header/>
         <SecondTitle/>
-        <Nav loopState={false} location={this.props.location.pathname}/>
+        <Nav loopState={false} location={this.props.location.pathname} current={2}/>
         <BrandContent/>
         <Footer/>
       </section>
