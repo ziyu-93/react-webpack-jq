@@ -28,16 +28,82 @@ $display:flex;
   -webkit-line-clamp: $rowNam;
   -webkit-box-orient: vertical;word-wrap:break-word;
 }
-*{
-  padding: 0;margin: 0;
+html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, del, dfn, em, img, ins, kbd, q, samp, small, strong, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, table, tbody, tfoot, thead, tr, th, td, article, aside, footer, header, nav, section {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+  background: transparent;
+  /* box-sizing: border-box;*/
+  /* -webkit-box-sizing: border-box;*/
+  /* -webkit-touch-callout: none;*/
+  /* -moz-box-sizing: border-box;*/
+  /* Firefox */
+  /*-webkit-touch-callout:none; 阻止长按图片之后呼出菜单提示复制的行为*/
 }
 html{
   width: 100%;
 }
 body{font-size: 14px;min-width: 1200px;font-family: 'Microsoft YaHei';width: 100%;}
-li{ list-style-type:none; vertical-align:middle;}
-input{vertical-align:middle;}
-a{text-decoration: none;color: #333}
+
+img {
+  border: 0;
+  vertical-align: top
+}
+
+li {
+  list-style: none;
+  vertical-align:middle;
+}
+
+input, textarea {
+  border: none;
+  background: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  vertical-align:middle;
+}
+
+input, textarea, select {
+  border: 0;
+  outline: none;
+  padding: 0;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+button, input[type="submit"] {
+  border: none;
+  background: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  outline: none;
+}
+
+a {
+  touch-callout: none;
+  text-decoration: none;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  color: #333
+}
+
+i, em {
+  font-style: normal
+}
+
+textarea {
+  resize: none
+}
+
+button::-moz-focus-inner, input::-moz-focus-inner, textarea::-moz-focus-inner {
+  border: 0;
+  padding: 0;
+}
 
 .clearfix::after{
   content: "";
