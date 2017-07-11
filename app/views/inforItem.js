@@ -8,7 +8,7 @@ import HotMessage from "./../components/hotMessage.js";
 import httpRequest from "./../tool/tools.js";
 import warning from "./../tool/warning.js"
 import { Link } from "react-router-dom";
-import "./../sass/inforItem.scss";
+import * as Api from "./../api/api.js";
 export default class InforItem extends Component {
   render() {
     return (
@@ -37,7 +37,7 @@ class InforItemContent extends Component {
     this.setState({
       id: location.pathname.slice(this.loca)
     })
-    httpRequest.fetchGet("http://localhost:3000/data/inforItem.json", "", (data) => {
+    httpRequest.fetchGet(Api.API_ITEM_WATCH, "", (data) => {
       for (let i of data.InforItem) {
         this.state.id === i.id ? this.setState({
           data: i

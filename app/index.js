@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 import "./sass/home.scss";
 import "./sass/infor.scss";
-
+import "./sass/inforItem.scss";
 import Index from "./views/home.js";
 import { Provider } from "react-redux";
 import Infor from "./views/infor.js";

@@ -9,6 +9,7 @@ import Nav from "./../components/nav.js";
 import warning from "./../tool/warning.js";
 import httpRequest from "./../tool/tools.js";
 import { Link } from "react-router-dom";
+import * as Api from "./../api/api.js";
 //httpRequest.fetchGet("https://api.myjson.com/bins/cle13", "", (data) => console.log(data))
 
 //首页 import 模块的时候，要看对方输出模块的格式，如果是default 就不需要加{} 如果是export{} 引用的时候就需要加上{}
@@ -401,7 +402,7 @@ class NewWatch extends Component {
   //   data: []
   // }
   componentDidMount() {
-    httpRequest.fetchGet("http://localhost:3000/data/data1.json", "", (data) => {
+    httpRequest.fetchGet(Api.API_HOME_WATCH, "", (data) => {
       this.setState({
         data: data.newWatch
       })
