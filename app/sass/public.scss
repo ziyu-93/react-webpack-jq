@@ -104,7 +104,18 @@ button::-moz-focus-inner, input::-moz-focus-inner, textarea::-moz-focus-inner {
   border: 0;
   padding: 0;
 }
-
+::-moz-selection{
+  background-color: #818181;
+  color: white;
+}
+::selection{
+  background-color: #818181;
+  color: white;
+}
+::-webkit-selection{
+  background-color: #818181;
+  color: white;
+}
 .clearfix::after{
   content: "";
   display: block;

@@ -12,7 +12,7 @@ import "./../sass/inforItem.scss";
 export default class InforItem extends Component {
   render() {
     return (
-      <section className="w-1200">
+      <section>
         <Header/>
         <SecondTitle/>
         <Nav loopState={false} location={this.props.location.pathname} current={0}/>
@@ -58,37 +58,37 @@ class InforItemContent extends Component {
     //console.log(a);
     }
     $(".content")
-      .html(a);
-    //console.log(data);
+      .html(a)
+    console.log(data);
+    console.log(typeof data);
     return (
       <section className="w-1200 clearfix">
-        <section className="w-875 f-l inforItem">
-          {
-      data !== [] ? <div className="item-content">
-            <div className="location icon">
-              <Link to={"/"}>首页</Link>
-              <font>></font>
-              <Link to={"/infor"}>资讯动态</Link>
-              <font>></font>
-              {data.title}
-            </div>
+         <section className="w-875 f-l inforItem">
+           <article className="item-content">
+             <aside className="location icon">
+                <Link to={"/"}>首页</Link>
+                <font>></font>
+                <Link to={"/infor"}>资讯动态</Link>
+                <font>></font>
+                {data.title}
+              </aside>
             <h1>{data.title}</h1>
-            <div className="time-author">
+            <aside className="time-author">
               <span>日期：{data.time}</span><span>作者：{data.author}</span>
-            </div>
-            <div className="content">
+            </aside>
+            <aside className="content">
               {
-        // data.context !== undefined ? data.context.map((e, i) => {
+        // data.context.map((e, i) => {
         //   return <div key={i}>
-        //               <p className="title">{e.title}</p>
-        //               <p className="text">{e.text}</p>
-        //               <img src={e.img} className="img"/>
-        //             </div>
-        // }) : <li>数据出错</li>
+        //                   <p className="title">{e.title}</p>
+        //                   <p className="text">{e.text}</p>
+        //                   <img src={e.img} className="img"/>
+        //                 </div>
+        // })
       }
-            </div>
-          </div> : <div>没有数据</div>
-      }
+            </aside>
+          </article>
+
         </section>
         <HotMessage/>
       </section>
