@@ -1,14 +1,14 @@
 import React, { Component } from "react";
-import { Footer } from "./../components/footer.js";
-import Header from "./../components/header.js";
-import SecondTitle from "./../components/search.js";
-import Nav from "./../components/nav.js";
-import ContentTitle from "./../components/title.js";
-import HotMessage from "./../components/hotMessage.js";
-import httpRequest from "./../tool/tools.js";
-import warning from "./../tool/warning.js"
+import { Footer } from "./../components/footer";
+import Header from "./../components/header";
+import SecondTitle from "./../components/search";
+import Nav from "./../components/nav";
+import ContentTitle from "./../components/title";
+import HotMessage from "./../components/hotMessage";
+import httpRequest from "./../tool/tools";
+import warning from "./../tool/warning"
 import { Link } from "react-router-dom";
-import * as Api from "./../api/api.js";
+import * as Api from "./../api/api";
 export default class InforItem extends Component {
   render() {
     return (

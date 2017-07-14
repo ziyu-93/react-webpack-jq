@@ -2,7 +2,7 @@
  * Reducer 是要引入 Action 也就是变化，做出应对，改变数据，变化页面结构。
  */
 
-import * as types from "./../action/homeAction.js"
+import * as types from "./../action/homeAction"
 
 const initState = {
 

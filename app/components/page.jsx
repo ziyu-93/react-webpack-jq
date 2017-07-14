@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
-import httpRequest from "./../tool/tools.js";
+import httpRequest from "./../tool/tools";
 //分页
 export default class Pagination extends Component {
   constructor(props) {

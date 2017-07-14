@@ -1,15 +1,15 @@
 import React, { Component } from "react";
-import Header from "./../components/header.js";
-import { Footer } from "./../components/footer.js";
-import ContentTitle from "./../components/title.js";
-import SecondTitle from "./../components/search.js";
-import Nav from "./../components/nav.js";
+import Header from "./../components/header";
+import { Footer } from "./../components/footer";
+import ContentTitle from "./../components/title";
+import SecondTitle from "./../components/search";
+import Nav from "./../components/nav";
 // import Style from "style-it";
 // let img = require("./image/大闹天竺.png");
-import warning from "./../tool/warning.js";
-import httpRequest from "./../tool/tools.js";
+import warning from "./../tool/warning";
+import httpRequest from "./../tool/tools";
 import { Link } from "react-router-dom";
-import * as Api from "./../api/api.js";
+import * as Api from "./../api/api";
 //httpRequest.fetchGet("https://api.myjson.com/bins/cle13", "", (data) => console.log(data))
 
 //首页 import 模块的时候，要看对方输出模块的格式，如果是default 就不需要加{} 如果是export{} 引用的时候就需要加上{}

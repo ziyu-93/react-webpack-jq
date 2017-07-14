@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-import { Footer } from "./../components/footer.js";
-import Header from "./../components/header.js";
-import SecondTitle from "./../components/search.js";
-import Nav from "./../components/nav.js";
-import ContentTitle from "./../components/title.js";
-import Pagination from "./../components/page.js"
+import { Footer } from "./../components/footer";
+import Header from "./../components/header";
+import SecondTitle from "./../components/search";
+import Nav from "./../components/nav";
+import ContentTitle from "./../components/title";
+import Pagination from "./../components/page"
 export default class WatchLibrary extends Component {
   componentWillMount() {
     //console.log(this.props.location.pathname);

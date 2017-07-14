@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import ContentTitle from "./../components/title.js";
+import ContentTitle from "./../components/title";
 //热点资讯
 const HotInfo = ({text}) => (
   <div className="item-info">

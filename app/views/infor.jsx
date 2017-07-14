@@ -1,14 +1,14 @@
 import React, { Component } from "react";
-import { Footer } from "./../components/footer.js";
-import Header from "./../components/header.js";
-import SecondTitle from "./../components/search.js";
-import Nav from "./../components/nav.js";
-import ContentTitle from "./../components/title.js";
-import Pagination from "./../components/page.js";
-import HotMessage from "./../components/hotMessage.js";
+import { Footer } from "./../components/footer";
+import Header from "./../components/header";
+import SecondTitle from "./../components/search";
+import Nav from "./../components/nav";
+import ContentTitle from "./../components/title";
+import Pagination from "./../components/page";
+import HotMessage from "./../components/hotMessage";
 import { Link } from "react-router-dom";
-import httpRequest from "./../tool/tools.js";
-import warning from "./../tool/warning.js";
+import httpRequest from "./../tool/tools";
+import warning from "./../tool/warning";
 export default class Infor extends Component {
   componentWillMount() {
     //console.log(this.props.location.pathname);

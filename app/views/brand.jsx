@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import { Footer } from "./../components/footer.js";
-import Header from "./../components/header.js";
-import SecondTitle from "./../components/search.js";
-import Nav from "./../components/nav.js";
-import ContentTitle from "./../components/title.js";
+import { Footer } from "./../components/footer";
+import Header from "./../components/header";
+import SecondTitle from "./../components/search";
+import Nav from "./../components/nav";
+import ContentTitle from "./../components/title";
 
 export default class Brand extends Component {
   componentWillMount() {
