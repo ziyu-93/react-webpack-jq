@@ -3,7 +3,7 @@
 
     运用 react webpakc2 和 jq 插件
 # Build folder
-    data 手写的几个静态.josn 文件
+    data 手写的几个静态.json 文件
 
     dist/html 是通过打包出来的文件,包含公共部分，依赖插件分离，css,jsx
 
