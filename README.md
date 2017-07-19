@@ -14,7 +14,7 @@
 
     4、npm run build. webpack.config.dist.js production
 
-# Study webpack2 npm start/npm run build  filename(webpack.config.js)
+# Study webpack2 filename( webpack.config.js )
     module.exports={
 
       context,w
@@ -30,7 +30,9 @@
       resolve,
 
       module={
+
         use plugins build html sass js jsx
+
       }
 
       plugins={
@@ -69,5 +71,3 @@
         git push 上传
 
     3)、state ={} 编辑器不报错，但是浏览器会支出错误
-
-#
