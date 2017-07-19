@@ -8,3 +8,4 @@ src
 *.lock
 
 */.DS_Store
+*.log

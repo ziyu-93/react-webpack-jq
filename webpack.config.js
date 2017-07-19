@@ -1,3 +1,5 @@
+'use strict';
+
 // path: path.join(__dirname, "build"),
 // //生成hash值，从而在更改版本的时候，让浏览器可以重新加载，并且可以保留缓存，chunkhash 为每一个文件添加了一个唯一的hash值
 // filename: "[name],[chunkhash].js"
@@ -16,24 +18,28 @@ const OpenBrowserPlugin = require("open-browser-webpack-plugin");
 const ChunkManifestPlugin = require("chunk-manifest-webpack-plugin");
 
 const WebpackChunkHash = require("webpack-chunk-hash");
-
-const ROOT_PATH = path.resolve(__dirname); //根路径
-const BASE_PATH = path.resolve(ROOT_PATH, 'app'); //__dirname 中的app文件夹
-const BASE_FILE = path.resolve(BASE_PATH, 'index');
-const BUILD_PATH = path.resolve(ROOT_PATH, '/build/dist'); //发布文件所存放的目录
 module.exports = {
   //默认的基础路径
-  context: ROOT_PATH,
+  context: path.resolve(__dirname + "/app"),
   //入口
   entry: {
-    app: BASE_FILE
+    app: "./index",
+  // vendor: ['isomorphic-fetch',
+  //   'react',
+  //   'react-dom',
+  //   'react-redux',
+  //   'react-router',
+  //   'redux',
+  //   'antd',
+  //   'moment'
+  // ]
   },
   //出口
   output: {
     // 输出的打包文件
     filename: '[name].bundle.js',
     //chunkFilename: "[name].[chunkhash].js"
-    path: BUILD_PATH,
+    path: path.resolve(__dirname + '/build'),
     // 对于热替换(HMR)是必须的，让 webpack 知道在哪里载入热更新的模块(chunk)
     // 开发模式下，的publicPath 可能是/   生产模式下 是上线的地址
     publicPath: 'http://localhost:3000/',
@@ -46,7 +52,7 @@ module.exports = {
     // 开启服务器的模块热替换(HMR)
     hot: true,
     // 输出文件的路径
-    contentBase: BUILD_PATH,
+    contentBase: __dirname + "/build",
     //不跳转
     historyApiFallback: true,
     //http、https请求头   不支持https
@@ -82,7 +88,7 @@ module.exports = {
     rules: [{
       // /^((?!my_legacy_code).)*\.js$/  除了my_legacy_code 这个文件夹其他文件夹 babel编译
       test: /\.jsx?$/,
-      exclude: /^node_modules$/,
+      exclude: /node_modules/,
       use: ['babel-loader?cacheDirectory']
     },
       //scss => css 并且插入到 head 中
@@ -99,7 +105,7 @@ module.exports = {
       // },
       {
         test: /\.html$/,
-        exclude: /^node_modules$/,
+        exclude: /node_modules/,
         //打包html
         use: [
           "html-loader"
@@ -108,7 +114,7 @@ module.exports = {
       //分离打包css文件的时候，将style-loader 更换为extract-text-webpack-plugin插件
       {
         test: /\.(scss|sass)/,
-        exclude: /^node_modules$/,
+        exclude: /node_modules/,
         //webpack2 官网issue webpack-dev-server 2.2.1 extract-text-webpack-plugin “没有热模块更换” 分开打包的时候，更改css hot-update.js 已经改变了，但是页面没有自动刷新。
         // 解决方法是加入 css-hot-loader 插件给样式自定义一个 hot-loader
         use: ['css-hot-loader'].concat(ExtractTextPlugin.extract({
@@ -146,7 +152,7 @@ module.exports = {
         use: {
           loader: 'file-loader?',
           options: {
-            limit: 8192,
+            limit: 10000,
             name: 'images / [hash:5].[name].[ext]'
           }
         }

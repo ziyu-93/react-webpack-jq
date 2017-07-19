@@ -17,23 +17,23 @@ const ChunkManifestPlugin = require("chunk-manifest-webpack-plugin");
 
 const WebpackChunkHash = require("webpack-chunk-hash");
 
-const ROOT_PATH = path.resolve(__dirname); //根路径
-const BASE_PATH = path.resolve(ROOT_PATH, 'app'); //__dirname 中的app文件夹
-const BASE_FILE = path.resolve(BASE_PATH, 'index');
-const BUILD_PATH = path.resolve(ROOT_PATH, '/build/dist'); //发布文件所存放的目录
+const ROOT_PATH = path.resolve(__dirname);
+const APP_PATH = path.resolve(ROOT_PATH, 'app'); //__dirname 中的src目录，以此类推
+const APP_FILE = path.resolve(APP_PATH, 'index'); //根目录文件app.jsx地址
+const BUILD_PATH = path.resolve(ROOT_PATH, 'build/dist'); //发布文件所存放的目录/pxq/dist/前面加/报错？
 module.exports = {
   //默认的基础路径
   context: ROOT_PATH,
   //入口
   entry: {
-    app: BASE_FILE
+    app: APP_FILE
   },
   //出口
   output: {
     // 输出的打包文件
     filename: '[name].bundle.js',
     //chunkFilename: "[name].[chunkhash].js"
-    path: BUILD_PATH,
+    path: path.resolve(ROOT_PATH, 'build'),
     // 对于热替换(HMR)是必须的，让 webpack 知道在哪里载入热更新的模块(chunk)
     // 开发模式下，的publicPath 可能是/   生产模式下 是上线的地址
     publicPath: 'http://localhost:3000/',
@@ -46,7 +46,7 @@ module.exports = {
     // 开启服务器的模块热替换(HMR)
     hot: true,
     // 输出文件的路径
-    contentBase: BUILD_PATH,
+    contentBase: __dirname + "/build",
     //不跳转
     historyApiFallback: true,
     //http、https请求头   不支持https
@@ -82,7 +82,7 @@ module.exports = {
     rules: [{
       // /^((?!my_legacy_code).)*\.js$/  除了my_legacy_code 这个文件夹其他文件夹 babel编译
       test: /\.jsx?$/,
-      exclude: /^node_modules$/,
+      exclude: /node_modules/,
       use: ['babel-loader?cacheDirectory']
     },
       //scss => css 并且插入到 head 中
@@ -99,7 +99,7 @@ module.exports = {
       // },
       {
         test: /\.html$/,
-        exclude: /^node_modules$/,
+        exclude: /node_modules/,
         //打包html
         use: [
           "html-loader"
@@ -108,7 +108,7 @@ module.exports = {
       //分离打包css文件的时候，将style-loader 更换为extract-text-webpack-plugin插件
       {
         test: /\.(scss|sass)/,
-        exclude: /^node_modules$/,
+        exclude: /node_modules/,
         //webpack2 官网issue webpack-dev-server 2.2.1 extract-text-webpack-plugin “没有热模块更换” 分开打包的时候，更改css hot-update.js 已经改变了，但是页面没有自动刷新。
         // 解决方法是加入 css-hot-loader 插件给样式自定义一个 hot-loader
         use: ['css-hot-loader'].concat(ExtractTextPlugin.extract({
@@ -146,7 +146,7 @@ module.exports = {
         use: {
           loader: 'file-loader?',
           options: {
-            limit: 8192,
+            limit: 10000,
             name: 'images / [hash:5].[name].[ext]'
           }
         }
@@ -188,19 +188,6 @@ module.exports = {
   //配置工具 也就是需要打包的部分 插件项
   plugins: [
 
-    //在 ouput 的文件里， 如果有模块加载了两次或者多次， 它就会被打包进一个叫common.js文件里， 之后就可以缓存文件了。 避免了多次加载
-    new webpack.optimize.CommonsChunkPlugin({
-      name: "commons",
-      filename: "commons.js",
-      minChunks: Infinity, //也可以是具体的数字  出现几次即打包在一起
-    }),
-
-    // new webpack.optimize.CommonsChunkPlugin({
-    //   name: ['vendor', 'mainifest'],
-    //   chunks: ['vendor']
-    //minChunks: Infinity,
-    //}),
-
     //打包 html
     new HtmlWebpackPlugin({
       title: "React",
@@ -219,6 +206,13 @@ module.exports = {
       }
     }),
 
+    // 开启全局的模块热替换(HMR)开发的时候会在打包的build文件夹里出现hot-update.js 和 hot-update.json  只有在开发啊模式下使用
+    // 加上这一块，不需要提前打包 build这个文件夹 直接就可以看到效果。
+    new webpack.HotModuleReplacementPlugin(),
+
+    // 当模块热替换(HMR)时在浏览器控制台输出对用户更友好的模块名字信息
+    new webpack.NamedModulesPlugin(),
+
     // new OpenBrowserPlugin({
     //   url: "http://localhost:3000"
     // }),
@@ -228,62 +222,19 @@ module.exports = {
       //NODE_ENV 是一个node.js暴露给运行脚本的体统环境变量。
       // 'process.env.NODE_ENV': JSON.stringify('production')
       'process.env': {
-        'NODE_ENV': JSON.stringify("production")
+        'NODE_ENV': JSON.stringify("development")
       }
     }),
-
-    // 开启全局的模块热替换(HMR)开发的时候会在打包的build文件夹里出现hot-update.js 和 hot-update.json  只有在开发啊模式下使用
-    // 加上这一块，不需要提前打包 build这个文件夹 直接就可以看到效果。
-    new webpack.HotModuleReplacementPlugin(),
-
-    // 当模块热替换(HMR)时在浏览器控制台输出对用户更友好的模块名字信息
-    new webpack.NamedModulesPlugin(),
-
-    //new webpack.HashedModuleIdsPlugin(),
-    // new WebpackChunkHash(),
-    // new ChunkManifestPlugin({
-    //   filename: "chunk-manifest.json",
-    //   manifestVariable: "webpackManifest",
-    //   inlineManifest: true
-    // }),
-
-    //压缩js文件
-    //package.json 里配置build => webpack 是打包，webpack -p打包并压缩
-    //这个在浏览器 console 部分，会有报错，大概翻译就是说，这个压缩打包的方法是一个 React 的开发缩小版本，生产环境部署的时候，要确保跳过开发 warnings 的生产构建。
-    new webpack.optimize.UglifyJsPlugin({ //使用 uglifyjs-webpack-plugin 插件一个效果。
-      //紧凑的输出
-      beautify: false,
-      //删除所有注释
-      comments: false,
-      compress: {
-        //UglifyJs删除没有用到的代码时不出警告warnings false 不出警告
-        warnings: false,
-        //删除所有的`console`语句
-        //还可以兼容 ie 浏览器
-        drop_console: false,
-        // 内嵌定义了但是只用到一次的变量
-        collapse_vars: true,
-        // 提取出出现多次但是没有定义成变量去引用的静态值
-        reduce_vars: true,
-      }
-    }),
-
     //Dll打包 先打包 dll.js 文件 然后在webpack.config.js 或者 webpackfile.js 引入进来。
-    new webpack.DllReferencePlugin({
-      manifest: require('./build/vendor/manifest.json'),
-      context: path.join(__dirname, "build/vendor/")
-    }),
+    // new webpack.DllReferencePlugin({
+    //   manifest: require('./build/vendor/manifest.json'),
+    //   context: path.join(__dirname, "build/vendor/")
+    // }),
 
     //分开打包css
     new ExtractTextPlugin({
       filename: "[name].bundle.css",
       allChunks: true,
-    }),
-
-    //用jquery
-    new webpack.ProvidePlugin({
-      $: "jquery"
     })
   ]
-
 };
