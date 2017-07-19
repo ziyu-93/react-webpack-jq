@@ -257,10 +257,16 @@ module.exports = {
     //package.json 里配置build => webpack 是打包，webpack -p打包并压缩
     //这个在浏览器 console 部分，会有报错，大概翻译就是说，这个压缩打包的方法是一个 React 的开发缩小版本，生产环境部署的时候，要确保跳过开发 warnings 的生产构建。
     new webpack.optimize.UglifyJsPlugin({ //使用 uglifyjs-webpack-plugin 插件一个效果。
-      //紧凑的输出
-      beautify: false,
+      sourceMap: true,
       //删除所有注释
       comments: false,
+      output: {
+        //紧凑的输出
+        beautify: false,
+        //删除所有注释
+        screw_ie8: true,
+        comments: false,
+      },
       compress: {
         //UglifyJs删除没有用到的代码时不出警告warnings false 不出警告
         warnings: false,
@@ -271,6 +277,7 @@ module.exports = {
         collapse_vars: true,
         // 提取出出现多次但是没有定义成变量去引用的静态值
         reduce_vars: true,
+        screw_ie8: true
       }
     }),
 

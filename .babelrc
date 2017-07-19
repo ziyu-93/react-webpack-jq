@@ -3,6 +3,10 @@
     ["es2015", {
       "module": false
     }],
-    "react"
+    "react",
+    "stage-0"
+  ],
+  "plugins": [
+    "transform-object-assign"
   ]
 }

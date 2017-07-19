@@ -11,6 +11,14 @@
 
     vendor 通过dll 打包分离提取出来的依赖插件。 webpack.dllPlugin.js
 
+# Build issue
+    1)、如果打包不用 UglifyJSPlugin  打包出来的bundle 会有 十多兆。
+
+    2)、打包的时候 UglifyJsPlugin 和 devtool:inline-source-map, 有冲突改成 devtool:source-map 还有有冲突
+
+       直接将 sourceMap:true 写在 UglifyJsPlugin 的 options 中 冲突消失。
+
+    3)、devtool:source-map 会使得打包的时间等很久
 # Perform the following steps to view the effect.
 [ Download zip ](https://github.com/ziyu-93/react-webpack-jq/archive/master.zip "悬停显示")
 

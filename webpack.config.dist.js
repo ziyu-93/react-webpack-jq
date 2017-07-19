@@ -12,6 +12,8 @@ const APP_PATH = path.resolve(ROOT_PATH, 'app'); //__dirname 中的src目录，�
 const APP_FILE = path.resolve(APP_PATH, 'index'); //根目录文件app.jsx地址
 const BUILD_PATH = path.resolve(ROOT_PATH, 'build/dist'); //发布文件所存放的目录/pxq/dist/前面加/报错？
 module.exports = {
+  //devtool 用于在浏览器查看代码结构。
+  //devtool: 'inline-source-map',
   //默认的基础路径
   context: ROOT_PATH,
   //入口
@@ -38,22 +40,37 @@ module.exports = {
     publicPath: './dist/',
     chunkFilename: '[name].[chunkhash:5].min.js',
   },
-
+  //webpack 自己的开发服务器。开发模式下的服务器，生产模式下就不需要这块了
+  devServer: {
+    // 开启服务器的模块热替换(HMR)
+    hot: true,
+    // 输出文件的路径
+    contentBase: __dirname + "/build",
+    //不跳转
+    historyApiFallback: true,
+    //http、https请求头   不支持https
+    https: false,
+    // 和上文 output 的“publicPath”值保持一致
+    publicPath: '/',
+    //自动更新页面
+    inline: true,
+    //端口号
+    port: 3000
+  },
   //不知道这个 watch 写与不写的区别
   watch: true,
 
   resolve: {
     //默认可以别这几个后缀名，webpack自行添加
     extensions: [".jsx", ".json", ".js", "scss", " ", ".css"],
-    modules: [path.resolve(__dirname, 'node_modules')],
+    modules: ["js", "node_modules/js-commons", "node_modules"],
     //直接查找目标文件，从而减少webpack的递归查找文件
     alias: {
       'react': 'react/dist/react.js',
       'react-dom': 'react-dom/dist/react-dom.js'
     }
   },
-  //devtool 用于在浏览器查看代码结构。
-  devtool: 'inline-source-map',
+
 
   //模块项
   module: {
@@ -154,11 +171,47 @@ module.exports = {
   //配置工具 也就是需要打包的部分 插件项
   plugins: [
 
-    //在 ouput 的文件里， 如果有模块加载了两次或者多次， 它就会被打包进一个叫common.js文件里， 之后就可以缓存文件了。 避免了多次加载
+    //DefinePlugin 在原始的源码中执行查找和替换操作，在导入的代码中，任何出现 process.env.NODE_ENV 的地方都会被替换为 production
+    new webpack.DefinePlugin({
+      //NODE_ENV 是一个node.js暴露给运行脚本的体统环境变量。
+      // 'process.env.NODE_ENV': JSON.stringify('production')
+      'process.env': {
+        'NODE_ENV': JSON.stringify("production")
+      }
+    }),
+
     new webpack.optimize.CommonsChunkPlugin({
-      name: "vendor",
-      filename: "vendor.bundle.js",
+      name: "commons",
+      filename: "commons.bundle.js",
       minChunks: Infinity, //也可以是具体的数字  出现几次即打包在一起
+    }),
+
+    //压缩js文件
+    //package.json 里配置build => webpack 是打包，webpack -progress -watch -p打包并压缩
+    //这个在浏览器 console 部分，会有报错，大概翻译就是说，这个压缩打包的方法是一个 React 的开发缩小版本，生产环境部署的时候，要确保跳过开发 warnings 的生产构建。
+    new webpack.optimize.UglifyJsPlugin({ //使用 uglifyjs-webpack-plugin 插件一个效果。
+      sourceMap: true,
+      //删除所有注释
+      comments: false,
+      output: {
+        //紧凑的输出
+        beautify: false,
+        //删除所有注释
+        screw_ie8: true,
+        comments: false,
+      },
+      compress: {
+        //UglifyJs删除没有用到的代码时不出警告warnings false 不出警告
+        warnings: false,
+        //删除所有的`console`语句
+        //还可以兼容 ie 浏览器
+        drop_console: false,
+        // 内嵌定义了但是只用到一次的变量
+        collapse_vars: true,
+        // 提取出出现多次但是没有定义成变量去引用的静态值
+        reduce_vars: true,
+        screw_ie8: true
+      }
     }),
 
     //打包 html
@@ -178,40 +231,10 @@ module.exports = {
         collapseWhitespace: true
       }
     }),
-    //DefinePlugin 在原始的源码中执行查找和替换操作，在导入的代码中，任何出现 process.env.NODE_ENV 的地方都会被替换为 production
-    new webpack.DefinePlugin({
-      //NODE_ENV 是一个node.js暴露给运行脚本的体统环境变量。
-      // 'process.env.NODE_ENV': JSON.stringify('production')
-      'process.env': {
-        'NODE_ENV': JSON.stringify("production")
-      }
-    }),
-    //压缩js文件
-    //package.json 里配置build => webpack 是打包，webpack -p打包并压缩
-    //这个在浏览器 console 部分，会有报错，大概翻译就是说，这个压缩打包的方法是一个 React 的开发缩小版本，生产环境部署的时候，要确保跳过开发 warnings 的生产构建。
-    new webpack.optimize.UglifyJsPlugin({ //使用 uglifyjs-webpack-plugin 插件一个效果。
-      //紧凑的输出
-      beautify: false,
-      //删除所有注释
-      comments: false,
-      compress: {
-        //UglifyJs删除没有用到的代码时不出警告warnings false 不出警告
-        warnings: false,
-        //删除所有的`console`语句
-        //还可以兼容 ie 浏览器
-        drop_console: false,
-        // 内嵌定义了但是只用到一次的变量
-        collapse_vars: true,
-        // 提取出出现多次但是没有定义成变量去引用的静态值
-        reduce_vars: true,
-      }
-    }),
 
-    //分开打包css
     new ExtractTextPlugin({
       filename: "[name].bundle.css",
       allChunks: true,
-    }),
+    })
   ]
-
 };
