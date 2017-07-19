@@ -105,7 +105,7 @@ module.exports = {
       // },
       {
         test: /\.html$/,
-        exclude: /node_modules/,
+        exclude: /^node_modules/,
         //打包html
         use: [
           "html-loader"
@@ -114,7 +114,7 @@ module.exports = {
       //分离打包css文件的时候，将style-loader 更换为extract-text-webpack-plugin插件
       {
         test: /\.(scss|sass)/,
-        exclude: /node_modules/,
+        exclude: /^node_modules/,
         //webpack2 官网issue webpack-dev-server 2.2.1 extract-text-webpack-plugin “没有热模块更换” 分开打包的时候，更改css hot-update.js 已经改变了，但是页面没有自动刷新。
         // 解决方法是加入 css-hot-loader 插件给样式自定义一个 hot-loader
         use: ['css-hot-loader'].concat(ExtractTextPlugin.extract({

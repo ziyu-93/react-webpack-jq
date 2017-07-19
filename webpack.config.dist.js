@@ -1,7 +1,3 @@
-// path: path.join(__dirname, "build"),
-// //生成hash值，从而在更改版本的时候，让浏览器可以重新加载，并且可以保留缓存，chunkhash 为每一个文件添加了一个唯一的hash值
-// filename: "[name],[chunkhash].js"
-
 //引用webpack
 const webpack = require('webpack');
 const path = require('path');
@@ -45,9 +41,6 @@ module.exports = {
 
   //不知道这个 watch 写与不写的区别
   watch: true,
-  // postcss: [
-  //   require("autoprefixer")
-  // ],
 
   resolve: {
     //默认可以别这几个后缀名，webpack自行添加
@@ -67,24 +60,12 @@ module.exports = {
     rules: [{
       // /^((?!my_legacy_code).)*\.js$/  除了my_legacy_code 这个文件夹其他文件夹 babel编译
       test: /\.jsx?$/,
-      exclude: /node_modules/,
+      exclude: /^node_modules$/,
       use: ['babel-loader?cacheDirectory']
     },
-      //scss => css 并且插入到 head 中
-      // {
-      //   test: /\.(scss|sass)$/,
-      //   exclude: /node_modules/,
-      //   //会将style的标签插入到 html 的 head 中
-      //   //use 数组中倒叙运行，就是style-loader最后用
-      //   use: [
-      //     "style-loader",
-      //     "css-loader",
-      //     "sass-loader"
-      //   ]
-      // },
       {
         test: /\.html$/,
-        exclude: /node_modules/,
+        exclude: /^node_modules$/,
         //打包html
         use: [
           "html-loader"
@@ -93,7 +74,7 @@ module.exports = {
       //分离打包css文件的时候，将style-loader 更换为extract-text-webpack-plugin插件
       {
         test: /\.(scss|sass)/,
-        exclude: /node_modules/,
+        exclude: /^node_modules$/,
         //webpack2 官网issue webpack-dev-server 2.2.1 extract-text-webpack-plugin “没有热模块更换” 分开打包的时候，更改css hot-update.js 已经改变了，但是页面没有自动刷新。
         // 解决方法是加入 css-hot-loader 插件给样式自定义一个 hot-loader
         use: ['css-hot-loader'].concat(ExtractTextPlugin.extract({
@@ -180,16 +161,6 @@ module.exports = {
       minChunks: Infinity, //也可以是具体的数字  出现几次即打包在一起
     }),
 
-    // new webpack.optimize.CommonsChunkPlugin({
-    //   name: ['vendor', 'mainifest'],
-    //   chunks: ['vendor']
-    //minChunks: Infinity,
-    //}),
-
-    // new OpenBrowserPlugin({
-    //   url: "http://localhost:3000"
-    // }),
-
     //打包 html
     new HtmlWebpackPlugin({
       title: "React",
@@ -235,12 +206,6 @@ module.exports = {
         reduce_vars: true,
       }
     }),
-
-    //Dll打包 先打包 dll.js 文件 然后在webpack.config.js 或者 webpackfile.js 引入进来。
-    // new webpack.DllReferencePlugin({
-    //   manifest: require('./build/vendor/manifest.json'),
-    //   context: path.join(__dirname, "build/vendor/")
-    // }),
 
     //分开打包css
     new ExtractTextPlugin({
