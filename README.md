@@ -2,14 +2,14 @@
     react/webpack/jq
 
     运用 react webpakc2 和 jq 插件
-# build folder
+# Build folder
     data 手写的几个静态.josn 文件
 
     dist/html 是通过打包出来的文件,包含公共部分，依赖插件分离，css,jsx
 
     libs 引用的jq 文件
 
-    vendor 通过dll 打包分离提取出来的依赖插件。 webpack.dllPlugin.js 
+    vendor 通过dll 打包分离提取出来的依赖插件。 webpack.dllPlugin.js
 
 # Perform the following steps to view the effect.
 [ Download zip ](https://github.com/ziyu-93/react-webpack-jq/archive/master.zip "悬停显示")
