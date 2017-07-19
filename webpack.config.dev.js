@@ -5,17 +5,10 @@
 //引用webpack
 const webpack = require('webpack');
 const path = require('path');
-const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 //打包html
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 //css 分开打包的插件 渐进增强，或者需要分离一个css文件
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
-// 自动打开地址
-const OpenBrowserPlugin = require("open-browser-webpack-plugin");
-//dll 新加入的一个功能，就是讲依赖包打包到一起，从而不会因为代码更新，或者app版本升级或者改动，从而这些依赖包也从新改变。
-const ChunkManifestPlugin = require("chunk-manifest-webpack-plugin");
-
-const WebpackChunkHash = require("webpack-chunk-hash");
 
 const ROOT_PATH = path.resolve(__dirname);
 const APP_PATH = path.resolve(ROOT_PATH, 'app'); //__dirname 中的src目录，以此类推
@@ -30,8 +23,8 @@ module.exports = {
   },
   //出口
   output: {
-    // 输出的打包文件
-    filename: '[name].bundle.js',
+    // 输出的打包文件  hash 保留缓存，并且可以重新加载。
+    filename: '[name].[hash:5].js',
     //chunkFilename: "[name].[chunkhash].js"
     path: path.resolve(ROOT_PATH, 'build'),
     // 对于热替换(HMR)是必须的，让 webpack 知道在哪里载入热更新的模块(chunk)
@@ -233,7 +226,7 @@ module.exports = {
 
     //分开打包css
     new ExtractTextPlugin({
-      filename: "[name].bundle.css",
+      filename: "[name].[hash:5].css",
       allChunks: true,
     })
   ]

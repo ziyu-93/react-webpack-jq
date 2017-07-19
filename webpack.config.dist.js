@@ -10,12 +10,6 @@ const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 //css 分开打包的插件 渐进增强，或者需要分离一个css文件
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
-// 自动打开地址
-const OpenBrowserPlugin = require("open-browser-webpack-plugin");
-//dll 新加入的一个功能，就是讲依赖包打包到一起，从而不会因为代码更新，或者app版本升级或者改动，从而这些依赖包也从新改变。
-const ChunkManifestPlugin = require("chunk-manifest-webpack-plugin");
-
-const WebpackChunkHash = require("webpack-chunk-hash");
 
 const ROOT_PATH = path.resolve(__dirname);
 const APP_PATH = path.resolve(ROOT_PATH, 'app'); //__dirname 中的src目录，以此类推

@@ -40,6 +40,7 @@ class RankContent extends Component {
             <source src="http://content.rolex.com/is/content/Rolex/new_cosmograph_daytona_0001_chs1777175112476FIV_iPad_640x360_800K"></source>
           </video>
           <button onClick={() => this.play()}>play</button>
+          <button onClick={() => this.play()}>state</button>
         </section>
       </section>
     )
