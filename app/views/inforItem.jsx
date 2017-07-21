@@ -48,19 +48,19 @@ class InforItemContent extends Component {
     })
   }
   render() {
-    const {data} = this.state;
-    //console.log(data.context);
+    const {item} = this.props;
+    console.log(item);
     let a = "";
-    if (data.context !== undefined) {
-      for (let i of data.context) {
+    if (item.context !== undefined) {
+      for (let i of item.context) {
         a += `${i.title === undefined ? "" : `<p className="title" style="line-height20px;font-weight:900;margin-bottom:20px">${i.title}</p>`}${i.text === undefined ? "" : `<p className="text" style="margin-bottom:20px;line-height20px;">${i.text}</p>`}${i.img === undefined ? "" : `<img src=${i.img} style="display:block;margin:0 auto 20px" className="img"/>`}`
       }
     //console.log(a);
     }
     $(".content")
       .html(a)
-    console.log(data);
-    console.log(typeof data);
+    console.log(item);
+    console.log(typeof item);
     return (
       <section className="w-1200 clearfix">
          <section className="w-875 f-l inforItem">
@@ -70,11 +70,11 @@ class InforItemContent extends Component {
                 <font>></font>
                 <Link to={"/infor"}>资讯动态</Link>
                 <font>></font>
-                {data.title}
+                {item.title}
               </aside>
-            <h1>{data.title}</h1>
+            <h1>{item.title}</h1>
             <aside className="time-author">
-              <span>日期：{data.time}</span><span>作者：{data.author}</span>
+              <span>日期：{item.time}</span><span>作者：{item.author}</span>
             </aside>
             <aside className="content">
               {

@@ -6,6 +6,7 @@ import "./sass/infor.scss";
 import "./sass/inforItem.scss";
 import Index from "./views/home";
 import { Provider } from "react-redux";
+import store from "./store/store.jsx";
 import Infor from "./views/infor";
 import WatchLibrary from "./views/watchLibrary";
 import Brand from "./views/brand";
@@ -20,15 +21,17 @@ import InforItem from "./views/inforItem";
 // )
 
 ReactDOM.render(
-  <Router>
-    <div>
-      <Route exact path="/" component={Index} />
-      <Switch>
-        <Route exact path="/infor" component={Infor} />
-        <Route exact path="/infor/:id" component={InforItem} />
-      </Switch>
-      <Route exact path="/WatchLibrary" component={WatchLibrary} />
-      <Route exact path="/brand" component={Brand} />
-      <Route exact path="/ranking" component={Rank} />
-    </div>
-  </Router>, document.getElementById("root"));
+  <Provider store={store}>
+    <Router>
+      <div>
+        <Route exact path="/" component={Index} />
+        <Switch>
+          <Route exact path="/infor" component={Infor} />
+          <Route exact path="/infor/:id" component={InforItem} />
+        </Switch>
+        <Route exact path="/WatchLibrary" component={WatchLibrary} />
+        <Route exact path="/brand" component={Brand} />
+        <Route exact path="/ranking" component={Rank} />
+      </div>
+    </Router>
+  </Provider>, document.getElementById("root"));

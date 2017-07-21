@@ -4,7 +4,7 @@
  */
 import thunk from 'redux-thunk';
 import { createStore, applyMiddleware, compose } from 'redux';
-import Reducer from "./../reducer/rootReducer.js";
+import rootReducer from "./../reducer/rootReducer";
 
 
 // let store = createStore(Reducer, {}, compose(
@@ -12,21 +12,20 @@ import Reducer from "./../reducer/rootReducer.js";
 //   window.devToolsExtension ? window.devToolsExtension() : f => f
 // ))
 
-const configureStore = (preloadedState) => {
-  const store = createStore(
-    Reducer,
-    applyMiddleware(thunk),
-    preloadedState
-  )
-  if (module.hot) {
-    // Enable Webpack hot module replacement for reducers
-    module.hot.accept('../reducers', () => {
-      const nextRootReducer = require('../reducers')
-        .default
-      store.replaceReducer(nextRootReducer)
-    })
-  }
+const store = createStore(
+  rootReducer,
+  applyMiddleware(thunk)
+)
 
-  return store
-}
-export default configureStore;
+export default store;
+// const configureStore = () => {
+// if (module.hot) {
+//   // Enable Webpack hot module replacement for reducers
+//   module.hot.accept('../reducer/rootReducer.jsx', () => {
+//     const nextRootReducer = require('./../reducer/rootReducer.jsx')
+//       .default
+//     store.replaceReducer(nextRootReducer)
+//   })
+// }
+//   return store
+// }

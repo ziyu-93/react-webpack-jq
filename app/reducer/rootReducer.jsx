@@ -5,8 +5,13 @@
 
 import { combineReducers } from 'redux';
 
-import Home from './homeReducer.js';
+import homeReducer from './homeReducer';
+import inforReducer from "./inforReducer";
+import inforItemReducer from "./inforItemReducer";
 
-export default Reducer = combineReducers({
-  Home
+const rootReducer = combineReducers({
+  home: homeReducer,
+  infor: inforReducer,
+  item: inforItemReducer
 })
+export default rootReducer;
