@@ -67,8 +67,12 @@ class InforContent extends Component {
         data: data.infor
       })
       sessionStorage.lastPage = this.state.pageCurr;
-      this.props.hand(this.state.data)
-    })
+    //  this.props.hand(this.state.data)
+    },
+      (error) => {
+        console.log(error);
+      }
+    )
   }
   handValue(val) {
     this.setState({
